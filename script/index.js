@@ -36,28 +36,61 @@ function getElement(id){
     const element = document.getElementById(id);
     return element
 }
-document.getElementById('cart-btn-1').addEventListener('click',function (){
-        const title = getElement('card-title-1').innerText
-        const price = getElement('card-price-1').innerText
-        console.log( title,price ,'clicked')
+
+
+
+// traditional way of adding event listener
+// document.getElementById('cart-btn-1').addEventListener('click',function (){
+//         const title = getElement('card-title-1').innerText
+//         const price = getElement('card-price-1').innerText
+//         console.log( title,price ,'clicked')
         
-        // total price 
-           const totalPrice = getElement('total-price').innerText;
+//         // total price 
+//            const totalPrice = getElement('total-price').innerText;
 
-        // calculate total price
-       const  currentPrice =  Number(price)+ Number( totalPrice);
-        console.log(currentPrice)
+//         // calculate total price
+//        const  currentPrice =  Number(price)+ Number( totalPrice);
+//         console.log(currentPrice)
 
 
-        // price update 
-        getElement("total-price").innerText = currentPrice.toFixed(2);
+//         // price update 
+//         getElement("total-price").innerText = currentPrice.toFixed(2);
 
-        // Take Cart-container
+//         // Take Cart-container
 
-        const cartContainer = getElement('cart-container')
+//         const cartContainer = getElement('cart-container')
 
-        // we will make a div or creating a div 
+//         // we will make a div or creating a div 
+
+//         const newCart = document.createElement('div');
+//         newCart.innerHTML = `
+//             <div class="m-5 bg-gray-200 rounded-xl flex justify-between  p-4">
+//                    <img src="./assets/kitchen-1.png" alt="" class="w-10">
+//                 <div class="">
+//                    <h2 class="font-bold"> ${title} </h2>
+//                    <h2 class="font-bold"> ${price}TK </h2>
+//                 </div>
+//             </div>`
+
+
+//          //   now we have to add this div in cart-container   
+//          cartContainer.append(newCart);    
         
 
      
-})
+// })
+
+// traverse technique
+const cartButtons = document.getElementsByClassName('cart-btn');
+console.log(cartButtons);
+
+for(let cartButton of cartButtons){
+    cartButton.addEventListener('click',function(){
+        const productImg = cartButton.parentNode.parentNode.children[0].children[0].src
+        const productTitle = cartButton.parentNode.parentNode.children[1].children[0].innerText;
+        const productPrice = cartButton.parentNode.parentNode.children[1].children[2].children[0].innerText ;
+        console.log(productPrice)
+
+
+    })
+}
